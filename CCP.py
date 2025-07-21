@@ -7,29 +7,30 @@ from exit_check import exit_check
 from Car import Car
 
 console.print("(exit для выхода) ВВЕДИТЕ ДАННЫЕ О СВОЕЙ МАШИНЕ:", style="bold magenta")
-
-marka = exit_check(console.input("[bold green]Марка машины:[/]"))
-if marka == "":
-    marka = "Undefined"
+def car_info():
+    marka = exit_check(console.input("[bold green]Марка машины:[/]"))
+    if marka == "":
+        marka = "Undefined"
     
-model = exit_check(console.input("[bold green]Модель авто:[/]"))
-if model == "":
-    model = "Undefined"
+    model = exit_check(console.input("[bold green]Модель авто:[/]"))
+    if model == "":
+        model = "Undefined"
     
-price = exit_check(str(console.input("[bold green]Цена вашего авто:[/]")))
-if price.isnumeric():
-    price = int(price)
-else:
-    while True:
-        price = exit_check(str(console.input("[bold green]Цена вашего авто:[/]")))
-        if price.isnumeric():
-            price = int(price)
-            break
-        else:
-            continue
-        
-marka_obj = Car(marka, model, price)
+    price = exit_check(str(console.input("[bold green]Цена вашего авто:[/]")))
+    if price.isnumeric():
+        price = int(price)
+    else:
+        while True:
+            price = exit_check(str(console.input("[bold green]Цена вашего авто:[/]")))
+            if price.isnumeric():
+                price = int(price)
+                break
+            else:
+                continue
 
+    return Car(marka, model, price)
+
+marka_obj = car_info()
 
 while True:
     def choisee():
@@ -99,26 +100,4 @@ while True:
         
     elif choise == 6:
         console.print("ВВЕДИТЕ НОВЫЕ ДАННЫЕ О СВОЕЙ МАШИНЕ:", style="bold magenta")
-        
-        marka = exit_check(console.input("[bold green]Марка машины:[/]"))
-        if marka == "":
-            marka = "Undefined"
-            
-        model = exit_check(console.input("[bold green]Модель авто:[/]"))
-        if model == "":
-            model = "Undefined"
-            
-        price = exit_check(str(console.input("[bold green]Цена вашего авто:[/]")))
-        if price.isnumeric():
-            price = int(price)
-        else:
-            while True:
-                price = exit_check(str(console.input("[bold green]Цена вашего авто:[/]")))
-                if price.isnumeric():
-                    price = int(price)
-                    break
-                else:
-                    continue
- 
-        marka_obj = Car(marka, model, price)
-        
+        marka_obj = car_info()
